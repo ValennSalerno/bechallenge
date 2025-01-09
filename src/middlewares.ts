@@ -36,9 +36,9 @@ export function auth(req: Request, res: Response, next: NextFunction) {
   }
 }
 
-//create auth middleware - ready
+//create auth middleware with JWT - ready
 //use it in stats and upload - ready
 //create BD and connect it - ready
-//give a role for each user (add if its admin manually) ?
-//seed the DB with some users ?
+//give everyone a user role (add if its admin manually)
+//seed the DB with some users
 //hacer el login route

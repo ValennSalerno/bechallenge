@@ -12,7 +12,7 @@ require('dotenv').config();
 const app = express();
 
 const secret = 'RhdGEiOnsiaWQ';
-const jwtTTL = Math.floor(Date.now() / 1000) + 60 * 60;
+const jwtTTL = Math.floor(Date.now() / 1000) + 60 * 60; //pasarlo al .env
 
 
 app.use(morgan('dev'));

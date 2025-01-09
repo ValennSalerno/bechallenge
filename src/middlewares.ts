@@ -36,8 +36,9 @@ export function auth(req: Request, res: Response, next: NextFunction) {
   }
 }
 
-//create auth middleware
-//use it in stats and upload
-//create BD and connect it -> mongo?
-//give a role for each user (add if its admin manually)
-//intentar hacer un login
+//create auth middleware - ready
+//use it in stats and upload - ready
+//create BD and connect it - ready
+//give a role for each user (add if its admin manually) ?
+//seed the DB with some users ?
+//hacer el login route

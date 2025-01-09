@@ -25,7 +25,7 @@ app.get('/', (req, res) => {
 });
 
 app.post('/register', (req, res) => {
-  //To Do: sabe in DB
+  //To Do: save in DB
   const userInDB = { id: 1, name: 'valen', admin: false };
 
   res.json({ 

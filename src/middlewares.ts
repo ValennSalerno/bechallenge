@@ -35,10 +35,3 @@ export function auth(req: Request, res: Response, next: NextFunction) {
     return res.status(403).json({ error: 'Invalid token!' });
   }
 }
-
-//create auth middleware with JWT - ready
-//use it in stats and upload - ready
-//create BD and connect it - ready
-//give everyone a user role (add if its admin manually)
-//seed the DB with some users
-//hacer el login route

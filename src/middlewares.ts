@@ -1,8 +1,10 @@
 import { NextFunction, Request, Response } from 'express';
 import ErrorResponse from './interfaces/ErrorResponse';
 import jwt from 'jsonwebtoken';
+import { PrismaClient } from '@prisma/client';
 
-const secret = 'RhdGEiOnsiaWQ';
+const secret = process.env.JWT_SECRET || 'RhdGEiOnsiaWQ';
+const prisma = new PrismaClient();
 
 export function notFound(req: Request, res: Response, next: NextFunction) {
   res.status(404);
@@ -21,15 +23,23 @@ export function errorHandler(err: Error, req: Request, res: Response<ErrorRespon
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-export function auth(req: Request, res: Response, next: NextFunction) { 
+export async function auth(req: Request, res: Response, next: NextFunction) { 
   if (!req.headers.authorization) {
     return res.status(403).json({ error: 'Token required!' });
   }
 
   try {
     const token = req.headers.authorization.split(' ')[1];
-    jwt.verify(token, secret);
+    const decoded = jwt.verify(token, secret) as { id: number };
+    const user = await prisma.user.findUnique({
+      where: { id: decoded.id },
+    });
+    
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
 
+    req.user = user;
     next();
   } catch (error) {
     return res.status(403).json({ error: 'Invalid token!' });

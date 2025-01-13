@@ -63,6 +63,10 @@ router.post('/register', async (req, res) => {
         username,
         password: hashedPassword,
         role: 'user',
+        createdAt: new Date(),
+        updatedAt: new Date(),
+        usedMB: 0,
+        uploadedF: 0,
       },
     });
 
